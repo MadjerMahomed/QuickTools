@@ -56,6 +56,11 @@ English or require the browser to translate the page again.
 4. Your site goes live at `https://yourusername.github.io/quicktools/` in a few minutes.
 5. In **Settings → Pages**, enable **Enforce HTTPS** when it is available.
 
+The canonical and sitemap URLs in this project are set to
+`https://madjermahomed.github.io/QuickTools/`. If you change the repository name or
+use a custom domain, update the canonical URLs in the HTML pages, `sitemap.xml`, and
+the sitemap URL in `robots.txt`.
+
 ### GitHub Pages security
 
 - Treat everything published by Pages as public, even if the repository itself is private. Never publish credentials, API keys, or private user data.

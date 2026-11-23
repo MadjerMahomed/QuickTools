@@ -4,11 +4,19 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 const htmlFiles = fs.readdirSync(root).filter(name => name.endsWith('.html'));
 const failures = [];
+const siteUrl = 'https://madjermahomed.github.io/QuickTools/';
 
 for (const file of htmlFiles) {
   const source = fs.readFileSync(path.join(root, file), 'utf8');
+  const canonicalUrl = siteUrl + (file === 'index.html' ? '' : file);
   if (!source.includes('<meta charset="UTF-8">') && !source.includes('<meta charset=\"UTF-8\">')) {
     failures.push(`${file}: missing UTF-8 declaration`);
+  }
+  if (!source.includes(`<link rel="canonical" href="${canonicalUrl}">`)) {
+    failures.push(`${file}: missing canonical URL`);
+  }
+  if (!source.includes(`<meta property="og:url" content="${canonicalUrl}">`)) {
+    failures.push(`${file}: missing Open Graph URL`);
   }
   if (!source.includes('<html lang="en" translate="yes">')) {
     failures.push(`${file}: missing source language or translation support`);
@@ -42,6 +50,13 @@ if (Math.abs(compound(1000, 0, 0.01, 12) - 1126.825) > 0.01) failures.push('Comp
 
 if (!fs.existsSync(path.join(root, 'sitemap.xml'))) failures.push('Missing sitemap.xml');
 if (!fs.existsSync(path.join(root, 'robots.txt'))) failures.push('Missing robots.txt');
+const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+for (const file of htmlFiles) {
+  const url = siteUrl + (file === 'index.html' ? '' : file);
+  if (!sitemap.includes(`<loc>${url}</loc>`)) failures.push(`sitemap.xml: missing ${url}`);
+}
+const robots = fs.readFileSync(path.join(root, 'robots.txt'), 'utf8');
+if (!robots.includes(`Sitemap: ${siteUrl}sitemap.xml`)) failures.push('robots.txt: missing sitemap URL');
 
 if (failures.length) {
   console.error(failures.join('\n'));
