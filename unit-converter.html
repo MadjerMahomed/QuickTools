@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" translate="yes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Unit Converter — Length, Weight, Temperature &amp; Volume | QuickTools</title>
+  <meta name="description" content="Free online unit converter. Convert length (km, miles), weight (kg, lbs), temperature (°C, °F) and volume (litres, gallons) instantly.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Unit Converter — Length, Weight, Temperature &amp; Volume | QuickTools">
+  <meta property="og:description" content="Convert common length, weight, temperature and volume measurements with this free online unit converter.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Unit Converter | QuickTools">
+  <meta name="twitter:description" content="Convert length, weight, temperature and volume measurements instantly.">
+  <!-- AdSense: paste your Google AdSense script tag here -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236564e9'/%3E%3Cpath d='M17 47 47 17M17 17h30v30' fill='none' stroke='white' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"QuickTools Unit Converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"Free online conversions for length, weight, temperature and volume.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><img class="logo-mark" src="assets/media/logo.svg" alt="">Quick<span>Tools</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tool-page container">
+    <h1>Unit Converter</h1>
+    <p class="lead">Pick a category, enter a value and see it converted to every other unit at once.</p>
+
+    <div class="panel">
+      <label for="category">Category</label>
+      <select id="category">
+        <option value="length">Length</option>
+        <option value="weight">Weight</option>
+        <option value="temperature">Temperature</option>
+        <option value="volume">Volume</option>
+      </select>
+
+      <label for="unit">From unit</label>
+      <select id="unit"></select>
+
+      <label for="value">Value</label>
+      <input type="number" id="value" value="1" step="any">
+
+      <button class="btn secondary" id="reset" type="button">Reset</button>
+      <div class="result" id="results" style="display:none;" aria-live="polite"></div>
+    </div>
+
+    <div class="info-block">
+      <h2>Popular conversions</h2>
+      <ul>
+        <li>1 inch = 2.54 cm &nbsp;•&nbsp; 1 mile = 1.609 km</li>
+        <li>1 kg = 2.205 lbs &nbsp;•&nbsp; 1 stone = 6.35 kg</li>
+        <li>°F = °C × 9/5 + 32</li>
+        <li>1 US gallon = 3.785 litres</li>
+      </ul>
+    </div>
+
+    <section class="faq-block" aria-labelledby="converter-faq">
+      <h2 id="converter-faq">Unit converter FAQs</h2>
+      <details><summary>Which measurements can I convert?</summary><p>Choose length, weight, temperature or volume, then select the starting unit and enter a value to see equivalent measurements.</p></details>
+      <details><summary>How are temperature conversions calculated?</summary><p>Temperature conversions use the standard Celsius, Fahrenheit and Kelvin conversion formulas.</p></details>
+    </section>
+    <nav class="related-tools" aria-label="Related tools">
+      <h2>More free tools</h2>
+      <a href="percentage-calculator.html">Percentage Calculator</a>
+      <a href="tip-calculator.html">Tip Calculator</a>
+      <a href="age-calculator.html">Age Calculator</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">QuickTools</div>
+          <div>Free online tools that run entirely in your browser.</div>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">All Tools</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 QuickTools. All rights reserved.</div>
+        <div>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Conversion functions are "to base unit" and "from base unit"
+    const DATA = {
+      length: {
+        label: 'Length',
+        units: {
+          'Millimetres (mm)': { to: x => x / 1000, from: x => x * 1000 },
+          'Centimetres (cm)': { to: x => x / 100, from: x => x * 100 },
+          'Metres (m)': { to: x => x, from: x => x },
+          'Kilometres (km)': { to: x => x * 1000, from: x => x / 1000 },
+          'Inches (in)': { to: x => x * 0.0254, from: x => x / 0.0254 },
+          'Feet (ft)': { to: x => x * 0.3048, from: x => x / 0.3048 },
+          'Miles (mi)': { to: x => x * 1609.344, from: x => x / 1609.344 }
+        }
+      },
+      weight: {
+        label: 'Weight',
+        units: {
+          'Grams (g)': { to: x => x / 1000, from: x => x * 1000 },
+          'Kilograms (kg)': { to: x => x, from: x => x },
+          'Tonnes (t)': { to: x => x * 1000, from: x => x / 1000 },
+          'Ounces (oz)': { to: x => x * 0.02834952, from: x => x / 0.02834952 },
+          'Pounds (lbs)': { to: x => x * 0.4535924, from: x => x / 0.4535924 },
+          'Stone': { to: x => x * 6.350293, from: x => x / 6.350293 }
+        }
+      },
+      temperature: {
+        label: 'Temperature',
+        units: {
+          'Celsius (°C)': { to: x => x, from: x => x },
+          'Fahrenheit (°F)': { to: x => (x - 32) * 5 / 9, from: x => x * 9 / 5 + 32 },
+          'Kelvin (K)': { to: x => x - 273.15, from: x => x + 273.15 }
+        }
+      },
+      volume: {
+        label: 'Volume',
+        units: {
+          'Millilitres (ml)': { to: x => x / 1000, from: x => x * 1000 },
+          'Litres (l)': { to: x => x, from: x => x },
+          'Cups (US)': { to: x => x * 0.2365882, from: x => x / 0.2365882 },
+          'Pints (US)': { to: x => x * 0.4731765, from: x => x / 0.4731765 },
+          'Gallons (US)': { to: x => x * 3.785412, from: x => x / 3.785412 }
+        }
+      }
+    };
+
+    const cat = document.getElementById('category');
+    const unit = document.getElementById('unit');
+    const value = document.getElementById('value');
+    const results = document.getElementById('results');
+
+    function fillUnits() {
+      const units = Object.keys(DATA[cat.value].units);
+      unit.innerHTML = units.map(u => `<option>${u}</option>`).join('');
+      unit.selectedIndex = Math.min(2, units.length - 1);
+      convert();
+    }
+
+    function convert() {
+      const from = DATA[cat.value].units[unit.value];
+      const v = parseFloat(value.value);
+      if (!from || isNaN(v)) { results.style.display = 'none'; return; }
+      const base = from.to(v);
+      let html = '';
+      for (const [name, u] of Object.entries(DATA[cat.value].units)) {
+        if (name === unit.value) continue;
+        html += `<p><strong>${fmt(u.from(base))}</strong> ${name}</p>`;
+      }
+      results.innerHTML = html;
+      results.style.display = 'block';
+    }
+
+    const fmt = n => {
+      if (Math.abs(n) >= 1e6 || (Math.abs(n) < 0.001 && n !== 0)) return n.toExponential(4);
+      return n.toLocaleString(undefined, { maximumFractionDigits: 6 });
+    };
+
+    cat.addEventListener('change', fillUnits);
+    unit.addEventListener('change', convert);
+    value.addEventListener('input', convert);
+    document.getElementById('reset').addEventListener('click', () => {
+      cat.value = 'length';
+      value.value = '1';
+      fillUnits();
+    });
+    fillUnits();
+  </script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

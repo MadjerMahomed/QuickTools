@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" translate="yes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online Tools &amp; Calculators | QuickTools</title>
+  <meta name="description" content="Use free online tools for word counting, percentages, unit conversions, age, passwords, BMI and tips. No sign-up required; your data stays in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Online Tools &amp; Calculators | QuickTools">
+  <meta property="og:description" content="Fast, free online calculators and everyday tools. No sign-up required, and your data stays in your browser.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Online Tools &amp; Calculators | QuickTools">
+  <meta name="twitter:description" content="Fast, free online calculators and everyday tools. No sign-up required, and your data stays in your browser.">
+  <!-- AdSense: after approval, paste your Google AdSense script tag here -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236564e9'/%3E%3Cpath d='M17 47 47 17M17 17h30v30' fill='none' stroke='white' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"QuickTools","description":"Free browser-based calculators and everyday online tools."}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><img class="logo-mark" src="assets/media/logo.svg" alt="">Quick<span>Tools</span></a>
+      <nav class="main-nav">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-orb hero-orb-one"></div>
+      <div class="hero-orb hero-orb-two"></div>
+      <div class="hero-circuit hero-circuit-left" aria-hidden="true">
+        <span class="circuit-node node-a"></span>
+        <span class="circuit-node node-b"></span>
+        <span class="circuit-node node-c"></span>
+      </div>
+      <div class="hero-circuit hero-circuit-right" aria-hidden="true">
+        <span class="circuit-node node-a"></span>
+        <span class="circuit-node node-b"></span>
+        <span class="circuit-node node-c"></span>
+      </div>
+      <div class="hero-content">
+        <div class="hero-kicker"><span></span> 12 everyday tools. Always free.</div>
+        <h1>Free online tools.<br><span class="highlight">Big time savers.</span></h1>
+        <p>Get instant answers without sign-ups, downloads or distractions. Private, fast and made for every screen.</p>
+        <div class="hero-search">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input id="toolSearch" type="search" placeholder="What do you need to do?" aria-label="Search tools" autocomplete="off">
+          <kbd><span class="shortcut-mac">⌘</span><span class="shortcut-other">Ctrl</span> K</kbd>
+        </div>
+        <div class="hero-badges">
+          <span><i class="badge-icon"><svg viewBox="0 0 24 24"><path d="M13.5 2.5 6.75 13h4.75l-1 8.5 6.75-10.5h-4.75l1-8.5Z"/></svg></i> Instant results</span>
+          <span><i class="badge-icon"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg></i> 100% private</span>
+          <span><i class="badge-icon"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10.5 18.5h3"/></svg></i> Works everywhere</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="section-label">Explore the toolkit</span>
+          <h2 class="section-title">All Tools</h2>
+        </div>
+        <span class="tool-count" aria-live="polite">12 tools available</span>
+      </div>
+      <section class="quick-access" id="quickAccess" aria-label="Your saved and recent tools" hidden>
+        <div class="quick-access-group" id="favoritesGroup" hidden>
+          <h3>Favorites</h3>
+          <div class="quick-access-links" id="favoriteLinks"></div>
+        </div>
+        <div class="quick-access-group" id="recentGroup" hidden>
+          <h3>Recently used</h3>
+          <div class="quick-access-links" id="recentLinks"></div>
+        </div>
+      </section>
+      <div class="tool-filters" role="group" aria-label="Filter tools by category">
+        <button class="filter-chip active" type="button" data-category="all" aria-pressed="true">All tools</button>
+        <button class="filter-chip" type="button" data-category="writing" aria-pressed="false">Writing</button>
+        <button class="filter-chip" type="button" data-category="math" aria-pressed="false">Calculators</button>
+        <button class="filter-chip" type="button" data-category="conversion" aria-pressed="false">Conversions</button>
+        <button class="filter-chip" type="button" data-category="personal" aria-pressed="false">Personal</button>
+      </div>
+      <div class="tool-empty" id="toolEmpty" role="status" hidden>
+        <h3>No matching tools</h3>
+        <p>Try a different search or category.</p>
+        <button class="btn secondary" id="clearToolFilters" type="button">Clear filters</button>
+      </div>
+      <div class="tool-grid">
+        <a class="tool-card card-blue" href="word-counter.html" data-search="word counter text characters sentences paragraph pdf essay writing" data-category="writing">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 3.75h8.5A2.75 2.75 0 0 1 19.25 6.5v11A2.75 2.75 0 0 1 16.5 20.25h-9A2.75 2.75 0 0 1 4.75 17.5v-11A2.75 2.75 0 0 1 7.5 3.75H8Z"/><path d="M8 8h8M8 12h8M8 16h5"/><path d="M7 3.75V2.5h10v1.25"/></svg>
+          </div>
+          <h2>Word Counter</h2>
+          <p>Count words, characters, sentences and paragraphs — or drag in a txt / PDF file.</p>
+          <div class="card-footer"><span>Analyze text</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-violet" href="percentage-calculator.html" data-search="percentage percent calculator increase decrease math" data-category="math">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="2.25"/><circle cx="16" cy="16" r="2.25"/><path d="m7 17 10-10"/></svg>
+          </div>
+          <h2>Percentage Calculator</h2>
+          <p>Percent of a number, percent change, and what percent X is of Y.</p>
+          <div class="card-footer"><span>Calculate</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-cyan" href="unit-converter.html" data-search="unit converter length weight temperature volume metric imperial" data-category="conversion">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M7 7h10l-3-3M17 17H7l3 3"/><path d="m17 4 3 3-3 3M7 20l-3-3 3-3"/></svg>
+          </div>
+          <h2>Unit Converter</h2>
+          <p>Convert length, weight, temperature and volume instantly.</p>
+          <div class="card-footer"><span>Convert units</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-orange" href="age-calculator.html" data-search="age calculator birthday date years months days personal" data-category="personal math">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3.75" y="5.75" width="16.5" height="14.5" rx="2.5"/><path d="M3.75 9.75h16.5M8 3v5M16 3v5M8 13.25h3M8 16.75h5"/></svg>
+          </div>
+          <h2>Age Calculator</h2>
+          <p>Your exact age in years, months, days — plus days until your next birthday.</p>
+          <div class="card-footer"><span>Find your age</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-pink" href="password-generator.html" data-search="password generator secure random strong personal" data-category="personal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M7.5 10V7.75a4.5 4.5 0 0 1 9 0V10M12 14v2.5"/><circle cx="12" cy="14" r=".8" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h2>Password Generator</h2>
+          <p>Create strong, random passwords that never leave your device.</p>
+          <div class="card-footer"><span>Generate password</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-green" href="bmi-calculator.html" data-search="bmi health weight height body mass index personal calculator" data-category="math personal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 4v16M5 7h14M7 7l-3 8h6L7 7Zm10 0-3 8h6l-3-8ZM8 20h8"/><circle cx="12" cy="4" r="1.25"/></svg>
+          </div>
+          <h2>BMI Calculator</h2>
+          <p>Check your Body Mass Index in metric or imperial units.</p>
+          <div class="card-footer"><span>Check BMI</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-amber" href="tip-calculator.html" data-search="tip calculator bill split gratuity restaurant math" data-category="math">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 10.25c.25-3.25 3-5.5 7-5.5s6.75 2.25 7 5.5H5ZM4.25 14h15.5M6.25 17.5h11.5a2 2 0 0 1 2 2v.75H4.25v-.75a2 2 0 0 1 2-2Z"/><path d="M8 7.75c.75.75 1.75 1.25 2.75 1.25M14 7.75c.75.75 1.75 1.25 2.75 1.25"/></svg>
+          </div>
+          <h2>Tip Calculator</h2>
+          <p>Split the bill and calculate the tip in seconds.</p>
+          <div class="card-footer"><span>Split the bill</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-violet" href="compound-interest.html" data-search="compound interest investment savings future value finance calculator" data-category="math">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 20V9M9 20V5M14 20v-7M19 20V3"/><path d="m3 13 5-5 5 5 8-9"/></svg>
+          </div>
+          <h2>Compound Interest</h2>
+          <p>Estimate investment growth with recurring contributions.</p>
+          <div class="card-footer"><span>Project growth</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-blue" href="loan-calculator.html" data-search="loan emi mortgage payment interest principal amortization finance calculator" data-category="math">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M7 15h4M15 15h2"/></svg>
+          </div>
+          <h2>Loan Calculator</h2>
+          <p>Calculate monthly payments and total interest for a loan.</p>
+          <div class="card-footer"><span>Estimate payment</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-cyan" href="date-difference.html" data-search="date difference days between dates duration calendar" data-category="personal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9h17M8 3v4M16 3v4M8 13h3M13 16h3"/></svg>
+          </div>
+          <h2>Date Difference</h2>
+          <p>Count the exact days, weeks or months between dates.</p>
+          <div class="card-footer"><span>Compare dates</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-orange" href="discount-calculator.html" data-search="discount sale price percent off savings shopping calculator" data-category="math">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="2"/><circle cx="16" cy="16" r="2"/><path d="m7 17 10-10"/></svg>
+          </div>
+          <h2>Discount Calculator</h2>
+          <p>Find sale prices, savings and final totals with tax.</p>
+          <div class="card-footer"><span>Find savings</span><div class="arrow">→</div></div>
+        </a>
+        <a class="tool-card card-pink" href="text-case-converter.html" data-search="text case converter uppercase lowercase title sentence capitalization writing" data-category="writing">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 18 9 6l5 12M6 14h6M15 9h5M17.5 6.5v13"/></svg>
+          </div>
+          <h2>Text Case Converter</h2>
+          <p>Switch between uppercase, lowercase, title and sentence case.</p>
+          <div class="card-footer"><span>Transform text</span><div class="arrow">→</div></div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">QuickTools</div>
+          <div>Free online tools that run entirely in your browser.</div>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">All Tools</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 QuickTools. All rights reserved.</div>
+        <div>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

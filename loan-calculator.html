@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" translate="yes">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Loan Payment Calculator | Monthly Payment & Interest | QuickTools</title><meta name="description" content="Calculate an estimated loan payment, total repayment and total interest for a fixed-rate loan."><link rel="stylesheet" href="assets/css/style.css"></head>
+<body>
+<header class="site-header"><div class="container"><a class="logo" href="index.html"><img class="logo-mark" src="assets/media/logo.svg" alt="">Quick<span>Tools</span></a><nav class="main-nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div></header>
+<main class="tool-page container"><h1>Loan Calculator</h1><p class="lead">Estimate a fixed-rate loan’s monthly payment and lifetime interest.</p>
+<div class="panel"><label for="amount">Loan amount</label><input id="amount" type="number" min="0" step="any" value="25000"><label for="apr">Annual percentage rate (%)</label><input id="apr" type="number" min="0" step="any" value="6"><label for="term">Loan term (years)</label><input id="term" type="number" min="1" max="50" step="1" value="5"><button class="btn" id="calculate" type="button">Calculate payment</button><button class="btn secondary" id="reset" type="button">Reset</button><div class="result" id="out" style="display:none" aria-live="polite"></div></div>
+<div class="info-block"><h2>About this estimate</h2><p>This calculator uses a fixed monthly payment for principal and interest. Taxes, insurance, fees and lender-specific terms are excluded.</p></div>
+<section class="faq-block"><h2>Loan calculator FAQs</h2><details><summary>Can I use this for a mortgage?</summary><p>It can estimate the principal-and-interest portion of a mortgage, but property tax, insurance and mortgage insurance may change the total monthly cost.</p></details></section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><div><div class="footer-brand">QuickTools</div><div>Free online tools that run entirely in your browser.</div></div><div class="footer-links"><a href="index.html">All Tools</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></div></div><div class="footer-bottom"><div>© 2026 QuickTools. All rights reserved.</div><div><a href="terms.html">Terms</a></div></div></div></footer>
+<script>
+function calculate(){
+const a=Number(amount.value),rate=Number(apr.value)/100/12,n=Number(term.value)*12,out=document.getElementById('out');
+if(!(a>0&&n>0&&Number.isFinite(a)&&Number.isFinite(rate)&&Number.isFinite(n))){out.style.display='block';out.textContent='Enter a loan amount, valid APR and term.';return;}
+const payment=rate===0?a/n:a*(rate*Math.pow(1+rate,n))/(Math.pow(1+rate,n)-1),total=payment*n,interest=total-a;
+out.style.display='block';out.innerHTML=`<strong>Monthly payment: ${payment.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2})}</strong><br>Total repayment: ${total.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2})}<br>Total interest: ${interest.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2})}`;
+}
+document.getElementById('calculate').addEventListener('click',calculate);document.querySelectorAll('#amount,#apr,#term').forEach(el=>el.addEventListener('input',calculate));
+document.getElementById('reset').addEventListener('click',()=>{amount.value='25000';apr.value='6';term.value='5';calculate();});
+</script><script src="assets/js/main.js" defer></script>
+</body></html>

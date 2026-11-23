@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" translate="yes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tip Calculator — Split the Bill &amp; Calculate Gratuity | QuickTools</title>
+  <meta name="description" content="Free tip calculator. Enter your bill and tip percentage to see the tip amount, total and per-person split for any group size.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tip Calculator — Calculate Tips &amp; Split the Bill | QuickTools">
+  <meta property="og:description" content="Calculate a restaurant tip, total bill and per-person share. Choose a tip percentage and split between any group size.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Tip Calculator | QuickTools">
+  <meta name="twitter:description" content="Calculate the tip, total and amount each person owes with this free bill-splitting calculator.">
+  <!-- AdSense: paste your Google AdSense script tag here -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236564e9'/%3E%3Cpath d='M17 47 47 17M17 17h30v30' fill='none' stroke='white' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"QuickTools Tip Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","description":"Free tip calculator for estimating gratuity, total bill and per-person bill splits.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><img class="logo-mark" src="assets/media/logo.svg" alt="">Quick<span>Tools</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tool-page container">
+    <h1>Tip Calculator</h1>
+    <p class="lead">Work out the tip, the total, and what each person owes — perfect for group dinners.</p>
+
+    <div class="panel">
+      <label for="bill">Bill amount</label>
+      <input type="number" id="bill" placeholder="e.g. 84.50" step="any">
+
+      <label for="tip">Tip percentage: <span id="tipLabel">15%</span></label>
+      <input type="range" id="tip" min="0" max="40" value="15" style="width:100%;">
+      <div style="display:flex; gap:8px; margin-top:6px; flex-wrap:wrap;">
+        <button class="btn secondary" style="margin-top:6px; padding:8px 14px;" data-tip="10">10%</button>
+        <button class="btn secondary" style="margin-top:6px; padding:8px 14px;" data-tip="15">15%</button>
+        <button class="btn secondary" style="margin-top:6px; padding:8px 14px;" data-tip="18">18%</button>
+        <button class="btn secondary" style="margin-top:6px; padding:8px 14px;" data-tip="20">20%</button>
+      </div>
+
+      <label for="people">Split between how many people?</label>
+      <input type="number" id="people" value="1" min="1">
+
+      <button class="btn secondary" id="reset" type="button">Reset</button>
+      <div class="result" id="out" style="display:none;" aria-live="polite"></div>
+    </div>
+
+    <div class="info-block">
+      <h2>How much should you tip?</h2>
+      <ul>
+        <li><strong>United States:</strong> 15–20% is standard at restaurants; 10% for modest service.</li>
+        <li><strong>United Kingdom:</strong> 10–12.5% if service charge isn't already on the bill.</li>
+        <li><strong>Europe generally:</strong> often optional — rounding up or ~5–10% is appreciated.</li>
+        <li>Always check whether a service charge is already included before adding a tip.</li>
+      </ul>
+    </div>
+
+    <section class="faq-block" aria-labelledby="tip-faq">
+      <h2 id="tip-faq">Tip calculator FAQs</h2>
+      <details><summary>How do I split a tip between a group?</summary><p>Enter the bill, choose a tip percentage and set the number of people. The calculator shows each person's share of the total.</p></details>
+      <details><summary>Which currency does the calculator use?</summary><p>Results are formatted in US dollars (USD). If your bill uses another currency, interpret the numeric amounts in that currency and disregard the displayed symbol.</p></details>
+    </section>
+    <nav class="related-tools" aria-label="Related tools">
+      <h2>More free tools</h2>
+      <a href="percentage-calculator.html">Percentage Calculator</a>
+      <a href="unit-converter.html">Unit Converter</a>
+      <a href="bmi-calculator.html">BMI Calculator</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">QuickTools</div>
+          <div>Free online tools that run entirely in your browser.</div>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">All Tools</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 QuickTools. All rights reserved.</div>
+        <div>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const bill = document.getElementById('bill');
+    const tip = document.getElementById('tip');
+    const people = document.getElementById('people');
+    const out = document.getElementById('out');
+    const money = n => n.toLocaleString(undefined, { style: 'currency', currency: 'USD' });
+
+    function update() {
+      tip.value = parseInt(tip.value, 10);
+      document.getElementById('tipLabel').textContent = tip.value + '%';
+      const b = parseFloat(bill.value), p = Math.max(1, parseInt(people.value, 10) || 1);
+      if (isNaN(b) || b < 0) { out.style.display = 'none'; return; }
+      const tipAmt = b * tip.value / 100;
+      const total = b + tipAmt;
+      out.innerHTML =
+        `<p>Tip: <strong>${money(tipAmt)}</strong></p>` +
+        `<p>Total: <strong>${money(total)}</strong></p>` +
+        (p > 1 ? `<p style="color:#2563eb;">Each of ${p} people pays: <strong>${money(total / p)}</strong></p>` : '');
+      out.style.display = 'block';
+    }
+
+    tip.addEventListener('input', update);
+    bill.addEventListener('input', update);
+    people.addEventListener('input', update);
+    document.querySelectorAll('[data-tip]').forEach(btn => btn.addEventListener('click', () => {
+      tip.value = btn.dataset.tip;
+      update();
+    }));
+    document.getElementById('reset').addEventListener('click', () => {
+      bill.value = '';
+      tip.value = '15';
+      people.value = '1';
+      out.textContent = '';
+      out.style.display = 'none';
+      document.getElementById('tipLabel').textContent = '15%';
+    });
+  </script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

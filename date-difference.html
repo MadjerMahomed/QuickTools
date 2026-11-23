@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" translate="yes">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Date Difference Calculator | Days, Weeks & Months | QuickTools</title><meta name="description" content="Find the exact number of days, weeks, months and years between two dates."><link rel="stylesheet" href="assets/css/style.css"></head>
+<body>
+<header class="site-header"><div class="container"><a class="logo" href="index.html"><img class="logo-mark" src="assets/media/logo.svg" alt="">Quick<span>Tools</span></a><nav class="main-nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div></header>
+<main class="tool-page container"><h1>Date Difference</h1><p class="lead">Calculate the exact duration between two calendar dates.</p>
+<div class="panel"><label for="start">Start date</label><input id="start" type="date"><label for="end">End date</label><input id="end" type="date"><button class="btn" id="calculate" type="button">Calculate difference</button><button class="btn secondary" id="reset" type="button">Reset</button><div class="result" id="out" style="display:none" aria-live="polite"></div></div>
+<div class="info-block"><h2>How dates are measured</h2><p>Results use calendar dates and count elapsed whole days. Month and year totals use calendar arithmetic; leap days are handled automatically.</p></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><div><div class="footer-brand">QuickTools</div><div>Free online tools that run entirely in your browser.</div></div><div class="footer-links"><a href="index.html">All Tools</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></div></div><div class="footer-bottom"><div>© 2026 QuickTools. All rights reserved.</div><div><a href="terms.html">Terms</a></div></div></div></footer>
+<script>
+function calculate(){
+const s=document.getElementById('start').value,e=document.getElementById('end').value,out=document.getElementById('out');
+if(!s&&!e)return;if(!s||!e){out.style.display='block';out.textContent='Choose both dates.';return;}
+const a=new Date(s+'T00:00:00'),b=new Date(e+'T00:00:00');if(isNaN(a)||isNaN(b)){out.textContent='Choose valid dates.';out.style.display='block';return;}
+let earlier=a<=b?a:b,later=a<=b?b:a;const days=Math.round((later-earlier)/86400000),weeks=Math.floor(days/7),remaining=days%7;
+let years=later.getFullYear()-earlier.getFullYear(),months=years*12+later.getMonth()-earlier.getMonth();if(later.getDate()<earlier.getDate())months--;
+const parts=[];if(years>0)parts.push(`${years} year${years===1?'':'s'}`);if(months<0)months=0;if(months>0)parts.push(`${months} month${months===1?'':'s'}`);
+out.style.display='block';out.innerHTML=`<strong>${days.toLocaleString()} day${days===1?'':'s'}</strong><br>${weeks} week${weeks===1?'':'s'}${remaining?` and ${remaining} day${remaining===1?'':'s'}`:''}<br>${parts.length?parts.join(', '):'Less than one month'}`;
+}
+const today=new Date(),past=new Date(today);past.setFullYear(today.getFullYear()-1);function iso(d){return d.toISOString().slice(0,10)};document.getElementById('start').value=iso(past);document.getElementById('end').value=iso(today);calculate();
+document.getElementById('calculate').addEventListener('click',calculate);document.querySelectorAll('#start,#end').forEach(el=>el.addEventListener('input',calculate));document.getElementById('reset').addEventListener('click',()=>{start.value=iso(past);end.value=iso(today);calculate();});
+</script><script src="assets/js/main.js" defer></script>
+</body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" translate="yes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Calculator — Free Online Percent Tool | QuickTools</title>
+  <meta name="description" content="Free percentage calculator: find X% of a number, calculate percentage increase or decrease, and work out what percent one number is of another.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Percentage Calculator | QuickTools">
+  <meta property="og:description" content="Calculate a percentage of a number, find what percent one value is of another, or work out percentage change.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Percentage Calculator | QuickTools">
+  <meta name="twitter:description" content="Find percentages, compare values and calculate percentage change with this free online calculator.">
+  <!-- AdSense: paste your Google AdSense script tag here -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236564e9'/%3E%3Cpath d='M17 47 47 17M17 17h30v30' fill='none' stroke='white' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"QuickTools Percentage Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"Free calculator for percentage of a number, percentage comparisons and percentage change.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><img class="logo-mark" src="assets/media/logo.svg" alt="">Quick<span>Tools</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tool-page container">
+    <h1>Percentage Calculator</h1>
+    <p class="lead">Three common percentage calculations in one place. Results update as you type.</p>
+
+    <div class="panel">
+      <h2>What is X% of Y?</h2>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <input type="number" id="a1" placeholder="X (%)" style="width:140px;"> <span>% of</span>
+        <input type="number" id="b1" placeholder="Y" style="width:140px;"> <span>=</span>
+        <strong id="r1" style="font-size:1.2rem;" aria-live="polite">—</strong>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>What percent is X of Y?</h2>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <input type="number" id="a2" placeholder="X" style="width:140px;"> <span>of</span>
+        <input type="number" id="b2" placeholder="Y" style="width:140px;"> <span>=</span>
+        <strong id="r2" style="font-size:1.2rem;" aria-live="polite">—</strong>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Percentage change (increase / decrease)</h2>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <span>From</span>
+        <input type="number" id="a3" placeholder="Old value" style="width:150px;">
+        <span>to</span>
+        <input type="number" id="b3" placeholder="New value" style="width:150px;">
+        <span>=</span>
+        <strong id="r3" style="font-size:1.2rem;" aria-live="polite">—</strong>
+      </div>
+    </div>
+    <button class="btn secondary" id="reset" type="button">Clear all values</button>
+
+    <div class="info-block">
+      <h2>Percentage formulas</h2>
+      <ul>
+        <li><strong>X% of Y</strong> = Y × (X ÷ 100)</li>
+        <li><strong>What percent X is of Y</strong> = (X ÷ Y) × 100</li>
+        <li><strong>Percent change</strong> = ((New − Old) ÷ |Old|) × 100</li>
+      </ul>
+    </div>
+
+    <section class="faq-block" aria-labelledby="percentage-faq">
+      <h2 id="percentage-faq">Percentage calculator FAQs</h2>
+      <details><summary>How do I find a percentage of a number?</summary><p>Multiply the number by the percentage and divide by 100. For example, 20% of 50 is 50 × 20 ÷ 100 = 10.</p></details>
+      <details><summary>How do I calculate percentage change?</summary><p>Subtract the original value from the new value, divide by the absolute original value, then multiply by 100.</p></details>
+    </section>
+    <nav class="related-tools" aria-label="Related tools">
+      <h2>More free tools</h2>
+      <a href="tip-calculator.html">Tip Calculator</a>
+      <a href="unit-converter.html">Unit Converter</a>
+      <a href="bmi-calculator.html">BMI Calculator</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">QuickTools</div>
+          <div>Free online tools that run entirely in your browser.</div>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">All Tools</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 QuickTools. All rights reserved.</div>
+        <div>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const fmt = n => n.toLocaleString(undefined, { maximumFractionDigits: 4 });
+    function bind(ids, calc) {
+      const els = ids.map(i => document.getElementById(i));
+      els.forEach(el => el.addEventListener('input', () => {
+        const vals = els.map(e => parseFloat(e.value));
+        const out = document.getElementById(calc.out);
+        out.textContent = vals.some(v => isNaN(v)) ? '—' : calc.f(vals);
+      }));
+    }
+    bind(['a1','b1'], { out: 'r1', f: ([x, y]) => fmt(x * y / 100) });
+    bind(['a2','b2'], { out: 'r2', f: ([x, y]) => y === 0 ? '—' : fmt(x / y * 100) + '%' });
+    bind(['a3','b3'], { out: 'r3', f: ([o, n]) => o === 0 ? '—' : ((n - o) / Math.abs(o) * 100).toFixed(2) + '%' });
+    document.getElementById('reset').addEventListener('click', () => {
+      ['a1','b1','a2','b2','a3','b3'].forEach(id => {
+        const input = document.getElementById(id);
+        input.value = '';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+    });
+  </script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

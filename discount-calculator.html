@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" translate="yes">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Discount & Sale Price Calculator | QuickTools</title><meta name="description" content="Calculate a discount, sale price, savings and final price after optional tax."><link rel="stylesheet" href="assets/css/style.css"></head>
+<body>
+<header class="site-header"><div class="container"><a class="logo" href="index.html"><img class="logo-mark" src="assets/media/logo.svg" alt="">Quick<span>Tools</span></a><nav class="main-nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div></header>
+<main class="tool-page container"><h1>Discount Calculator</h1><p class="lead">Find the sale price and amount saved, with an optional tax estimate.</p>
+<div class="panel"><label for="price">Original price</label><input id="price" type="number" min="0" step="any" value="100"><label for="discount">Discount (%)</label><input id="discount" type="number" min="0" max="100" step="any" value="25"><label for="tax">Optional tax (%)</label><input id="tax" type="number" min="0" step="any" value="0"><button class="btn" id="calculate" type="button">Calculate savings</button><button class="btn secondary" id="reset" type="button">Reset</button><div class="result" id="out" style="display:none" aria-live="polite"></div></div>
+<div class="info-block"><h2>How the result is calculated</h2><p>Tax is applied after the discount when provided. The total may differ at checkout because of rounding or additional fees.</p></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><div><div class="footer-brand">QuickTools</div><div>Free online tools that run entirely in your browser.</div></div><div class="footer-links"><a href="index.html">All Tools</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></div></div><div class="footer-bottom"><div>© 2026 QuickTools. All rights reserved.</div><div><a href="terms.html">Terms</a></div></div></div></footer>
+<script>
+function calculate(){const p=Number(price.value),d=Number(discount.value),t=Number(tax.value),out=document.getElementById('out');if(!(p>=0&&d>=0&&d<=100&&t>=0)){out.style.display='block';out.textContent='Enter a valid price and discount.';return;}const saving=p*d/100,sale=p-saving,total=sale*(1+t/100);out.style.display='block';out.innerHTML=`<strong>Sale price: ${sale.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2})}</strong><br>You save: ${saving.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2})}<br>Final with tax: ${total.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2})}`;}
+document.getElementById('calculate').addEventListener('click',calculate);document.querySelectorAll('#price,#discount,#tax').forEach(el=>el.addEventListener('input',calculate));document.getElementById('reset').addEventListener('click',()=>{price.value='100';discount.value='25';tax.value='0';calculate();});
+</script><script src="assets/js/main.js" defer></script>
+</body></html>

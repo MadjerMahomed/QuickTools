@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" translate="yes">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Text Case Converter | Uppercase, Lowercase & Title Case | QuickTools</title><meta name="description" content="Convert text to uppercase, lowercase, title case or sentence case instantly in your browser."><link rel="stylesheet" href="assets/css/style.css"></head>
+<body>
+<header class="site-header"><div class="container"><a class="logo" href="index.html"><img class="logo-mark" src="assets/media/logo.svg" alt="">Quick<span>Tools</span></a><nav class="main-nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div></header>
+<main class="tool-page container"><h1>Text Case Converter</h1><p class="lead">Transform text capitalization instantly. Everything stays in your browser.</p>
+<div class="panel"><label for="text">Text</label><textarea id="text" rows="8" placeholder="Paste or type text here..."></textarea><div class="button-row"><button class="btn" type="button" data-case="upper">UPPERCASE</button><button class="btn" type="button" data-case="lower">lowercase</button><button class="btn" type="button" data-case="title">Title Case</button><button class="btn" type="button" data-case="sentence">Sentence case</button><button class="btn secondary" type="button" id="clear">Clear</button></div></div>
+<div class="info-block"><h2>Private text conversion</h2><p>Text is processed locally and is never sent to a server.</p></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><div><div class="footer-brand">QuickTools</div><div>Free online tools that run entirely in your browser.</div></div><div class="footer-links"><a href="index.html">All Tools</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></div></div><div class="footer-bottom"><div>© 2026 QuickTools. All rights reserved.</div><div><a href="terms.html">Terms</a></div></div></div></footer>
+<script>
+const text=document.getElementById('text');document.querySelectorAll('[data-case]').forEach(button=>button.addEventListener('click',()=>{const value=text.value;switch(button.dataset.case){case'upper':text.value=value.toUpperCase();break;case'lower':text.value=value.toLowerCase();break;case'title':text.value=value.toLowerCase().replace(/\b([a-z])/g,(m,c)=>c.toUpperCase());break;case'sentence':text.value=value.toLowerCase().replace(/(^\s*[a-z]|[.!?]\s+[a-z])/g,m=>m.toUpperCase());break;}text.dispatchEvent(new Event('input'));}));
+document.getElementById('clear').addEventListener('click',()=>{text.value='';text.focus();});
+</script><script src="assets/js/main.js" defer></script>
+</body></html>

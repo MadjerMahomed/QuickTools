@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" translate="yes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator — How Old Am I in Days, Months &amp; Years? | QuickTools</title>
+  <meta name="description" content="Free age calculator. Enter your date of birth to find your exact age in years, months and days, plus how many days until your next birthday.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Age Calculator — Calculate Your Age in Years, Months &amp; Days | QuickTools">
+  <meta property="og:description" content="Calculate your exact age in years, months and days, and see how many days remain until your next birthday.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Age Calculator | QuickTools">
+  <meta name="twitter:description" content="Find your age in years, months and days and count down to your next birthday.">
+  <!-- AdSense: paste your Google AdSense script tag here -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236564e9'/%3E%3Cpath d='M17 47 47 17M17 17h30v30' fill='none' stroke='white' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"QuickTools Age Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"Free age calculator that returns age in years, months and days and days until the next birthday.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><img class="logo-mark" src="assets/media/logo.svg" alt="">Quick<span>Tools</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tool-page container">
+    <h1>Age Calculator</h1>
+    <p class="lead">Find your exact age and how long until your next birthday. Nothing is stored or shared.</p>
+
+    <div class="panel">
+      <label for="dob">Date of birth</label>
+      <input type="date" id="dob">
+      <button class="btn" id="calc">Calculate age</button>
+      <button class="btn secondary" id="reset" type="button">Reset</button>
+      <div class="result" id="out" style="display:none;" aria-live="polite"></div>
+    </div>
+
+    <div class="info-block">
+      <h2>Did you know?</h2>
+      <p>A person born on 1 January 2000 has lived through roughly 9,500+ days by 2026 — that's over 228,000 hours. This calculator uses the standard calendar method: your age counts full years first, then remaining months, then remaining days.</p>
+    </div>
+
+    <section class="faq-block" aria-labelledby="age-faq">
+      <h2 id="age-faq">Age calculator FAQs</h2>
+      <details><summary>How is my age calculated?</summary><p>Your date of birth is compared with today's date to calculate completed years, followed by remaining months and days.</p></details>
+      <details><summary>Is my date of birth saved?</summary><p>No. The calculation runs in your browser, and the date is not stored by this tool.</p></details>
+    </section>
+    <nav class="related-tools" aria-label="Related tools">
+      <h2>More free tools</h2>
+      <a href="bmi-calculator.html">BMI Calculator</a>
+      <a href="tip-calculator.html">Tip Calculator</a>
+      <a href="word-counter.html">Word Counter</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">QuickTools</div>
+          <div>Free online tools that run entirely in your browser.</div>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">All Tools</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 QuickTools. All rights reserved.</div>
+        <div>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const dobInput = document.getElementById('dob');
+    const ageOutput = document.getElementById('out');
+    document.getElementById('calc').addEventListener('click', () => {
+      const dobVal = dobInput.value;
+      const out = ageOutput;
+      if (!dobVal) { out.style.display = 'none'; return; }
+      const dob = new Date(dobVal + 'T00:00:00');
+      const now = new Date();
+      if (dob > now) { out.textContent = 'That date is in the future!'; out.style.display = 'block'; return; }
+
+      let years = now.getFullYear() - dob.getFullYear();
+      let months = now.getMonth() - dob.getMonth();
+      let days = now.getDate() - dob.getDate();
+      if (days < 0) { months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+      if (months < 0) { years--; months += 12; }
+
+      const totalDays = Math.floor((now - dob) / 86400000);
+      const next = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
+      if (next <= now) next.setFullYear(next.getFullYear() + 1);
+      const untilBirthday = Math.ceil((next - now) / 86400000);
+
+      out.innerHTML =
+        `<strong>${years}</strong> years, <strong>${months}</strong> months, <strong>${days}</strong> days<br>` +
+        `<span style="color:#5b6474;">Total: ${totalDays.toLocaleString()} days — that's about ${Math.floor(totalDays / 365.25 * 12).toLocaleString()} months or ${(totalDays * 24).toLocaleString()} hours.</span><br>` +
+        `<span class="birthday-countdown">${untilBirthday} day${untilBirthday === 1 ? '' : 's'} until your next birthday</span>`;
+      out.style.display = 'block';
+    });
+    document.getElementById('reset').addEventListener('click', () => {
+      dobInput.value = '';
+      ageOutput.textContent = '';
+      ageOutput.style.display = 'none';
+    });
+  </script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
